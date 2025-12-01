@@ -1,11 +1,10 @@
 from django import forms
-from webapp.models import Issue, Status, Type
+from webapp.models import Issue, Type
 
 
 class IssueForm(forms.ModelForm):
-    type = forms.ModelChoiceField(queryset=Type.objects.all(), required=True)
-    status = forms.ModelChoiceField(queryset=Status.objects.all(), required=True)
+    types = forms.ModelMultipleChoiceField(queryset=Type.objects.all(), required=False)
 
     class Meta:
         model = Issue
-        fields = ['summary', 'description', 'type', 'status']
+        fields = ['summary', 'description', 'types', 'status']

@@ -18,8 +18,15 @@ class TypeAdmin(admin.ModelAdmin):
 
 @admin.register(Issue)
 class IssueAdmin(admin.ModelAdmin):
-    list_display = ('summary', 'description', 'status', 'type', 'created_at', 'updated_at')
-    list_filter = ('status', 'type')
+    list_display = ('summary', 'description', 'status', 'display_types', 'created_at', 'updated_at')
+    list_filter = ('status', 'types__name')
     search_fields = ('description',)
+
+    filter_horizontal = ('types',)
+
+    def display_types(self, obj):
+        return ", ".join([type.name for type in obj.types.all()])
+    display_types.short_description = 'Типы'
+
 
 

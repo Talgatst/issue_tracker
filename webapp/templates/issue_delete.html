@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Удалить задачу</h1>
-  <p>Подтверждаете{{ issue.summary }}"?</p>
-  <form method="POST">
-    {% csrf_token %}
-    <button type="submit">Удалить</button>
-  </form>
-  <a href="{% url 'issue_list' %}">Отменить</a>
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title">Удалить задачу</h1>
+      <p class="card-text">Подтверждаете удаление задачи: <strong>{{ issue.summary }}</strong>?</p>
+      <form method="POST">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Удалить</button>
+      </form>
+      <a href="{% url 'issue_list' %}" class="btn btn-secondary mt-3">Отменить</a>
+    </div>
+  </div>
 {% endblock %}
