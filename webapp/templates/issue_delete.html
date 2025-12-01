@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Удалить задачу</h1>
+  <p>Подтверждаете{{ issue.summary }}"?</p>
+  <form method="POST">
+    {% csrf_token %}
+    <button type="submit">Удалить</button>
+  </form>
+  <a href="{% url 'issue_list' %}">Отменить</a>
+{% endblock %}

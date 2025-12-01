@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Задачи</h1>
+  <ul>
+      {% for issue in issues %}
+      <li>
+        <a href="{% url 'issue_detail' issue.pk %}">{{ issue.summary }}</a>
+        <a href="{% url 'issue_update' issue.pk %}">Редактировать</a>
+        <a href="{% url 'issue_delete' issue.pk %}">Удалить</a>
+      </li>
+    {% empty %}
+      <li>Нет задач</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'issue_create' %}">Добавить</a>
+{% endblock %}
