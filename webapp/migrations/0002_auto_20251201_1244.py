@@ -6,7 +6,6 @@ def add_types_field(apps, schema_editor):
     Issue = apps.get_model('webapp', 'Issue')
     for issue in Issue.objects.all():
         issue.types.set([issue.type])
-        issue.save()
 
 
 class Migration(migrations.Migration):

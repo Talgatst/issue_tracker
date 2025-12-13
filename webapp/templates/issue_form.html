@@ -1,21 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="card">
-    <div class="card-body">
-      <h1 class="card-title">
-        {% if form.instance.pk %}Редактировать задачу{% else %}Добавить задачу{% endif %}
-      </h1>
-      <form method="POST">
-        {% csrf_token %}
-        <div class="form-group">
-          {{ form.as_p }}
-        </div>
-        <button type="submit" class="btn btn-success">
-          {% if form.instance.pk %}Сохранить{% else %}Добавить{% endif %}
-        </button>
-      </form>
-      <a href="{% url 'issue_list' %}" class="btn btn-secondary mt-3">Отменить</a>
-    </div>
+<div class="card mt-3">
+  <div class="card-body">
+    <h1 class="card-title">
+      {% if form.instance.pk %}Редактировать задачу{% else %}Добавить задачу{% endif %}
+    </h1>
+    <form method="POST">
+      {% csrf_token %}
+      {% include 'issue_form_fields.html' %}
+      <button type="submit" class="btn btn-success mt-2">
+        {% if form.instance.pk %}Сохранить{% else %}Добавить{% endif %}
+      </button>
+      <a href="{% url 'issue_list' %}" class="btn btn-secondary mt-2">Отменить</a>
+    </form>
   </div>
+</div>
 {% endblock %}

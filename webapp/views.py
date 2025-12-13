@@ -32,7 +32,6 @@ class IssueCreateView(View):
         form = IssueForm(request.POST)
         if form.is_valid():
             issue = form.save()
-            issue.types.set(form.cleaned_data['types'])
             return redirect('issue_list')
         return render(request, 'issue_form.html', {'form': form})
 
@@ -48,10 +47,8 @@ class IssueUpdateView(View):
         form = IssueForm(request.POST, instance=issue)
         if form.is_valid():
             issue = form.save()
-            issue.types.set(form.cleaned_data['types'])
             return redirect('issue_list')
         return render(request, 'issue_form.html', {'form': form})
-
 
 
 class IssueDeleteView(View):
